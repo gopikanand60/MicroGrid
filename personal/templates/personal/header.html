@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Umair Chorghay</title>
+	<meta charset="utf-8" />
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'personal/css/bootstrap.min.css' %}" type = "text/css"/>
+	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<style type="text/css">
+		html,
+		body {
+		  height:100%
+		}
+	</style>
+</head>
+<script>
+var API_URL = "http://localhost:8000"
+function getVals() {
+	var route = API_URL + '/vals';
+	var method = "GET";
+
+	var request = $.ajax({
+		url : route,
+		method : method
+	});
+
+	request.done(function(data){
+		var vals = data["resp"].split('#');
+		$('#sourceV').html(vals[0]);
+		$('#sourceI').html(vals[1]);
+		$('#sourceP').html(vals[2]);
+		$('#Node1V').html(vals[3]);
+		$('#Node1I').html(vals[4]);
+		$('#Node1P').html(vals[5]);
+		$('#Node2V').html(vals[6]);
+		$('#Node2I').html(vals[7]);
+		$('#Node2P').html(vals[8]);
+		$('#Node3V').html(vals[9]);
+		$('#Node3I').html(vals[10]);
+		$('#Node3P').html(vals[11]);
+		
+	});
+}
+
+var t = setInterval(getVals, 2000);
+</script>
+<body class="body" style="background-color:#f6f6f6">
+	<div class="container-fluid" style="min-height:95%; ">
+		<div class="row">
+			  <div class="col-md-12">
+				  <br>
+				  <center>
+				  <h2>Load parameters and Control</h2>
+				  </center>
+			  </div>
+		</div><hr>
+        <div class="row">
+		  <div class="col-md-6">
+		  <br>
+		  {% block content %}
+		  {% endblock %}
+		  </div>
+		  <div class="col-md-6">
+		  <h4>Node1</h4>
+		  </div>
+		
+		</div>
+		<div class="row">
+		  <div class="col-md-6">
+		  <br>
+          <br>
+		  <br>
+		  </div> 
+		  <div class="col-md-6">
+		    <table class="table table-bordered">
+			  <tbody>
+			    <tr>
+				  <td>Voltage</td>
+				  <td id="Node1V"></td>
+				</tr>
+				<tr>
+				  <td>Current</td>
+				  <td id="Node1I"></td>
+				</tr>
+				<tr>
+				  <td>Power</td>
+				  <td id="Node1P"></td>
+				</tr>
+			  </tbody>
+			</table>
+		    <a href="/TurnOFF1/" class="btn btn-primary btn-lg active" role="button">Turn OFF1</a>
+		  
+			
+		  </div>
+		</div> 
+		<div class="row">
+		  <div class="col-md-6">
+		  <h4>Source</h4>	
+		  </div>
+		  <div class="col-md-6">
+		  <h4>Node2</h4>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="col-md-6">
+		    <table class="table table-bordered">
+			  <tbody>
+			    <tr>
+				  <td>Voltage</td>
+				  <td id="sourceV"></td>
+				</tr>
+				<tr>
+				  <td>Current</td>
+				  <td id="sourceI"></td>
+				</tr>
+				<tr>
+				  <td>Power</td>
+				  <td id="sourceP"></td>
+				</tr>
+		      </tbody>
+			</table>
+			<a href="/TurnOFFS/" class="btn btn-primary btn-lg active" role="button">Turn OFFS</a>
+		  </div> 
+		  <div class="col-md-6">
+		    <table class="table table-bordered">
+			  <tbody>
+			    <tr>
+				  <td>Voltage</td>
+				  <td id="Node2V"></td>
+				</tr>
+				<tr>
+				  <td>Current</td>
+				  <td id="Node2I"></td>
+				</tr>
+				<tr>
+				  <td>Power</td>
+				  <td id="Node2P"></td>
+				</tr>
+			  </tbody>
+			</table>
+			<a href="/TurnOFF2/" class="btn btn-primary btn-lg active" role="button">Turn OFF2</a>
+		  
+			
+		  </div>
+		</div> 
+		<div class="row">
+		  <div class="col-md-6">
+		  <br>	
+		  </div>
+		  <div class="col-md-6">
+		  <h4>Node3</h4>
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="col-md-6">
+		  <br>
+          <br>
+		  <br>
+		  </div> 
+		  <div class="col-md-6">
+		    <table class="table table-bordered">
+			  <tbody>
+			    <tr>
+				  <td>Voltage</td>
+				  <td id="Node3V"></td>
+				</tr>
+				<tr>
+				  <td>Current</td>
+				  <td id="Node3I"></td>
+				</tr>
+				<tr>
+				  <td>Power</td>
+				  <td id="Node3P"></td>
+				</tr>
+			  </tbody>
+			</table> 
+		    <a href="/TurnOFF3/" class="btn btn-primary btn-lg active" role="button">Turn OFF3</a>
+			
+		  </div>
+		</div> 
+	</div>
+	<footer>
+		<div class="container-fluid" style='margin-left:15px'>
+			<p><a href="#" target="blank">Contact</a> | <a href="#" target="blank">LinkedIn</a> | <a href="#" target="blank">Twitter</a> | <a href="#" target="blank">Google+</a></p>
+		</div>
+	</footer>	
+	
+</body>
+
+</html>
